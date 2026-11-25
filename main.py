@@ -50,11 +50,17 @@ def _gate_ok(word):
     """Mirror of the house gate: 1-30 chars, UTF-8, not only whitespace,
     exactly one word."""
     return (
+        # 1-30 chars (the house length limit)
         1 <= len(word) <= 30
+        # no leading/trailing whitespace
         and word.strip() == word
+        # not empty / not only whitespace
         and word
+        # exactly one word, no internal spaces
         and len(word.split()) == 1
+        # plain ASCII, so the file is valid UTF-8 text
         and word.isascii()
+        # no control characters
         and word.isprintable()
     )
 
